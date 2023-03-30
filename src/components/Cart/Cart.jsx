@@ -6,31 +6,51 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ListGroupItem } from 'react-bootstrap';
 
-const Cart = () => {
+const Cart = (props) => {
+	const { cart } = props;
+
+	let quantity = 0;
+	let totalPrice = 0;
+	let totalShipping = 0;
+
+	for (const product of cart) {
+		quantity = quantity + product.quantity;
+		totalPrice = totalPrice + product.price * product.quantity;
+		totalShipping = totalShipping + product.quantity * 5;
+	}
+
+	const tax = (totalPrice * 7) / 100;
+
+	const grandTotal = totalPrice + totalShipping + tax;
+
 	return (
 		<ListGroup>
 			<ListGroup.Item className="text-center bg-dark text-light">
 				<h4>Order Summary</h4>
 			</ListGroup.Item>
 			{/* Cart Items */}
-			<ListGroup.Item className="d-flex justify-content-between align-items-center">
-				<div className="d-flex align-items-center gap-4">
-					<img
-						src="https://i.dummyjson.com/data/products/1/4.jpg"
-						alt=""
-						style={{ width: '80px', height: '80px' }}
-						className="border"
-					/>
-					<div>
-						<h5>Iphone 14</h5>
-						<p>Quantity: 1</p>
+			{cart.map((product, index) => (
+				<ListGroup.Item
+					key={index}
+					className="d-flex justify-content-between align-items-center">
+					<div className="d-flex align-items-center gap-4">
+						<img
+							src={product.thumbnail}
+							alt=""
+							style={{ width: '80px', height: '80px' }}
+							className="border"
+						/>
+						<div>
+							<h6>{product.title}</h6>
+							<h6 className="fw-normal">Quantity: {product.quantity}</h6>
+							<button className="border-0 d-flex align-items-center justify-content-center p-1">
+								<FontAwesomeIcon icon={faTrash} />
+							</button>
+						</div>
 					</div>
-				</div>
-				<h4>$500</h4>
-				<button className="border-0 d-flex align-items-center justify-content-center p-1">
-					<FontAwesomeIcon icon={faTrash} />
-				</button>
-			</ListGroup.Item>
+					<h5>${product.price}</h5>
+				</ListGroup.Item>
+			))}
 
 			{/* Cart Calculations */}
 			<ListGroup.Item className="py-3">
@@ -38,23 +58,23 @@ const Cart = () => {
 					<tbody>
 						<tr>
 							<td>Selected Items</td>
-							<td>1</td>
+							<td>{quantity}</td>
 						</tr>
 						<tr>
 							<td>Total Price</td>
-							<td>$500</td>
+							<td>${totalPrice}</td>
 						</tr>
 						<tr>
-							<td>Total Shipping Price</td>
-							<td>$5</td>
+							<td>Total Shipping Cost</td>
+							<td>${totalShipping}</td>
 						</tr>
 						<tr>
 							<td>Tax</td>
-							<td>$10</td>
+							<td>${tax}</td>
 						</tr>
 						<tr>
 							<th>Grand Total</th>
-							<th>$525</th>
+							<th>${grandTotal}</th>
 						</tr>
 					</tbody>
 				</Table>
