@@ -10,7 +10,7 @@ import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 function Header() {
 	return (
 		<Navbar bg="dark" variant="dark" expand="lg">
-			<Container fluid className="container-xxl">
+			<Container fluid className="container-xxl py-2">
 				<Navbar.Brand href="#">
 					<FontAwesomeIcon
 						icon={faCartArrowDown}
@@ -23,10 +23,9 @@ function Header() {
 				<Navbar.Toggle aria-controls="navbarScroll" />
 				<Navbar.Collapse id="navbarScroll">
 					<Nav
-						className="me-auto my-2 my-lg-0"
+						className="ms-auto me-4 my-2 my-lg-0"
 						style={{ maxHeight: '100px' }}
 						navbarScroll>
-						<Nav.Link href="#action1">Sign Up / Login</Nav.Link>
 						<Nav.Link
 							href="#action2"
 							className="text-warning fw-medium text-uppercase">
@@ -40,9 +39,7 @@ function Header() {
 							<NavDropdown.Divider />
 							<NavDropdown.Item href="#action5">Tablets</NavDropdown.Item>
 						</NavDropdown>
-						<Nav.Link href="#" disabled>
-							Language
-						</Nav.Link>
+						<Nav.Link href="#action1">Sign Up / Login</Nav.Link>
 					</Nav>
 					<Form className="d-flex">
 						<Form.Control
