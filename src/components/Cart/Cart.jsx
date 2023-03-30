@@ -24,7 +24,7 @@ const Cart = (props) => {
 	const grandTotal = totalPrice + totalShipping + tax;
 
 	return (
-		<ListGroup>
+		<ListGroup style={{ width: '380px' }}>
 			<ListGroup.Item className="text-center bg-dark text-light">
 				<h4>Order Summary</h4>
 			</ListGroup.Item>

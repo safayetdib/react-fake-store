@@ -52,10 +52,10 @@ const Shop = () => {
 
 	return (
 		// Shop Container
-		<div className="container-xxl mx-auto row my-4">
-			<div className="col-md-8">
+		<div className="container-xxl mx-auto d-flex flex-wrap-reverse justify-content-center flex-sm-nowrap gap-3 my-4">
+			<div className="">
 				{/* Products Container */}
-				<div className="row gap-4">
+				<div className="d-flex flex-wrap gap-4 justify-content-center">
 					{products.map((product) => (
 						<Product
 							key={product.id}
@@ -66,7 +66,7 @@ const Shop = () => {
 				</div>
 			</div>
 			{/* Cart Container */}
-			<div className="col-md-4">
+			<div>
 				<Cart cart={cart} />
 			</div>
 		</div>
